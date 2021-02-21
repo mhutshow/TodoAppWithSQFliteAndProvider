@@ -1,6 +1,7 @@
 import 'package:circular_check_box/circular_check_box.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:todo_app_with_sqflite_provider/Screen/AddTaskScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -8,6 +9,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String dayName='sat';
   bool checkBox = false;
   DateFormat date = DateFormat('d MMM');
   @override
@@ -69,10 +71,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             borderRadius: BorderRadius.all(Radius.circular(70)),
                           ),
                           child: Center(
-                              child: Text('Add Task',
-                                  style: TextStyle(
-                                      color: Color(0xFF4044C9),
-                                      fontSize: 22))),
+                              child: FlatButton(
+                                onPressed: (){
+                                  Navigator.push(context, MaterialPageRoute(builder:(context) => AddTaskScreen(), ));
+                                },
+                                child: Text('Add Task',
+                                    style: TextStyle(
+                                        color: Color(0xFF4044C9),
+                                        fontSize: 22)),
+                              )),
                         ),
                       ],
                     ),
@@ -94,13 +101,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (index == 0) {
                     return Row(
                       children: [
-                        DayNameBuilder(dayName: 'SAT \nDAY'),
-                        DayNameBuilder(dayName: 'SUN \nDAY'),
-                        DayNameBuilder(dayName: 'MON \nDAY'),
-                        DayNameBuilder(dayName: 'TUE \nDAY'),
-                        DayNameBuilder(dayName: 'WED \nDAY'),
-                        DayNameBuilder(dayName: 'THU \nDAY'),
-                        DayNameBuilder(dayName: 'FRI \nDAY'),
+                        DayNameBuilder(
+                            dayName: 'SAT \nDAY',
+                          color: dayName=='sat'? Color(0xFF4044C9): Color(0xFF405669),
+
+                        ),
+                        DayNameBuilder(dayName: 'SUN \nDAY' , color: dayName=='sun'? Color(0xFF4044C9) : Color(0xFF405669),
+
+                        ),
+                        DayNameBuilder(dayName: 'MON \nDAY', color: dayName=='mon'? Color(0xFF4044C9): Color(0xFF405669),),
+                        DayNameBuilder(dayName: 'TUE \nDAY',  color: dayName=='tue'? Color(0xFF4044C9): Color(0xFF405669),),
+                        DayNameBuilder(dayName: 'WED \nDAY', color: dayName=='wed'? Color(0xFF4044C9): Color(0xFF405669),),
+                        DayNameBuilder(dayName: 'THU \nDAY' , color: dayName=='thu'? Color(0xFF4044C9): Color(0xFF405669),),
+                        DayNameBuilder(dayName: 'FRI \nDAY' , color: dayName=='fri'? Color(0xFF4044C9): Color(0xFF405669),),
                       ],
                     );
                   }
@@ -152,8 +165,9 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class DayNameBuilder extends StatelessWidget {
-  DayNameBuilder({this.dayName});
+  DayNameBuilder({this.dayName, this.color});
   final String dayName;
+  final Color color;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -162,7 +176,7 @@ class DayNameBuilder extends StatelessWidget {
         height: 50,
         width: 50,
         decoration: BoxDecoration(
-          color: Color(0xFF4044C9),
+          color: color,
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
         child: Center(

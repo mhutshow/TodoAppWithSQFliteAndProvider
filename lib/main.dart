@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 
 import 'Screen/HomeScreen.dart';
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor: Color(0xFF4044C9),
-    statusBarIconBrightness: Brightness.light,
-  ));
+  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  //   statusBarColor: Color(0xFF4044C9),
+  //   statusBarIconBrightness: Brightness.light,
+  // ));
   runApp(MyApp());
 }
 class MyApp extends StatelessWidget {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
       home: HomeScreen(),
     );
